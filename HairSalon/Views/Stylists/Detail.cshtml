@@ -1,0 +1,38 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>@Model["stylist"].GetName()</h1>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Client Name</th>
+      <th>Appointment Date <a href='/stylists/@Model["stylist"].GetId()/clients/sort-desc'>&#9660;</a> <a href='/stylists/@Model["stylist"].GetId()/clients/sort-asc'>&#9650;</a></th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  @foreach (var client in @Model["clients"])
+  {
+    string display = "";
+    if (@client.GetFormattedDate() != null)
+    {
+      display = @client.GetFormattedDate().ToShortDateString();
+    }
+    else
+    {
+      display = "never!";
+    }
+    <tr>
+      <td>@client.GetDescription()</td>
+      <td>Due @display</td>
+      <td><a href="/clients/@client.GetId()/update"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+      <td><a href="/clients/@client.GetId()/delete"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></td>
+    </tr>
+  }
+  </tbody>
+</table>
+
+<p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client</a></p>
+<p><a href="/">Return Home</a></p>

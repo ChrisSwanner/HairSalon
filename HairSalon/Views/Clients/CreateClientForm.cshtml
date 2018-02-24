@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+
+<h1>Clip Sports</h1>
+<h3>Add A New Client to @Model.GetName()</h3>
+<form action="/stylists/@Model.GetId()/clients" method="post">
+  <div class="form-group">
+    <label for="new-item">Client Name</label>
+    <input type="text" id="new-item" name="new-item" class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="raw-date">Appointment Date</label>
+    <input type="date" id="raw-date" name="raw-date" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-warning" name="button">Add Client</button>
+</form>
